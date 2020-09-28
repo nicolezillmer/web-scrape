@@ -32,10 +32,6 @@ def scrape_info():
         title = article.find('div', class_='content_title').text
         body = article.find('div', class_='article_teaser_body').text
         
-       
-
-        
-    #browser.click_link_by_partial_text('Next')
 
 
 def scrape_featured():
@@ -54,7 +50,7 @@ def scrape_hemi1():
 def scrape_hemi2():
     browser=init_browser
 
-    scrape_hemi2='https://astrogeology.usgs.gov/search/map/Mars/Viking/schiaparelli_enhanced''
+    scrape_hemi2='https://astrogeology.usgs.gov/search/map/Mars/Viking/schiaparelli_enhanced'
     browser.visit(hemi2)
 
 def scrape_hemi3():
@@ -70,14 +66,14 @@ def scrape_hemi4():
     browser.visit(hemi4)
 
     # Store data in a dictionary
-    marsdict = {
-        "featured_img": featured_img,
-        "url2":
-    }
+    #marsdict = {
+        #"featured_img": featured_img,
+        #"url2":
+   # }
 
     
 
-browser.quit()
+#browser.quit()
        
 
 # %%
