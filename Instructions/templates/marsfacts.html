@@ -14,8 +14,14 @@
 
     <div class="jumbotron text-center">
       <!-- Render our data -->
-      <h1>{{ text }}</h1>
+      <h1>Mars Facts</h1>
+      <p><a class='btn btn-primary btn-lg' href='/scrape' role='button'>Get Data!</a></p>
     </div>
+    <h2>Latest Mars news from NASA:</h2>
+    <h3>{{marsdata.title}}</h3>
+    <h3>{{marsdata.body}}</h3>
+
+
 
   </div>
 

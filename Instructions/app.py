@@ -4,21 +4,20 @@ import marsscrape
 
 app = Flask(__name__)
 
-mongo = PyMongo(app, url="mongodb://localhost:27017/nasa_db
+mongo = PyMongo(app, url="mongodb://localhost:27017/nasa_db")
 
 @app.route("/")
 def home():
 
-    mars_data = mongo.nasa_db.marsarticles.find_one()
+    mars_data = mongo.db.collection.find_one()
 
     return render_template("marsfacts.html", marsdata=mars_data)
 
 @app.route("/scrape")
 def scrape():
 
-    mars_scrape=(marsscrape.scrape_info()
-
-    mongo.nasa_db.marsarticles.update({}, mars_scrape, upsert=True)
+    mars_scrape=marsscrape.scrape_info()
+    mongo.db.collection.update({}, mars_scrape, upsert=True)
 
     return redirect("/") 
 

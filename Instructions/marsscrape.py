@@ -32,6 +32,8 @@ def scrape_info():
         title = article.find('div', class_='content_title').text
         body = article.find('div', class_='article_teaser_body').text
         
+       
+
         
     #browser.click_link_by_partial_text('Next')
 
