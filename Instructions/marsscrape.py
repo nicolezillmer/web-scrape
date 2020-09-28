@@ -1,5 +1,4 @@
 
-# %%
 import os
 from bs4 import BeautifulSoup as bs
 import requests
@@ -8,8 +7,6 @@ from flask import Flask, render_template
 import pymongo
 
 
-# %%
-
 def init_browser():
     executable_path = {"executable_path":"chromedriver.exe"}
     browser = Browser('chrome',**executable_path, headless=False)
@@ -17,7 +14,7 @@ def init_browser():
 def scrape_info():
     browser=init_browser
 
-# %%
+
     url = 'https://mars.nasa.gov/news/'
     browser.visit(url)
 
@@ -32,12 +29,33 @@ def scrape_info():
         title = article.find('div', class_='content_title').text
         body = article.find('div', class_='article_teaser_body').text
         
+import pandas as pd        
+url = 'https://space-facts.com/mars/'
+        
+tables = pd.read_html(url)
+print(tables[0])
 
+tables[2].head()
+    
+df=tables[0]
+df.columns = ['Measure', 'Fact']
+df.head()
+
+df = df.iloc[1:]
+df.set_index('Measure', inplace=True)
+df.head()
+
+
+html_table = df.to_html()
+html_table
+
+
+html_table.replace('\n', '')
 
 def scrape_featured():
     browser=init_browser
 
-# %%
+
     feature = 'https://www.jpl.nasa.gov/spaceimages/details.php?id=PIA00271'
     browser.visit(feature)
 
@@ -77,47 +95,6 @@ def scrape_hemi4():
        
 
 # %%
-import pandas as pd        
-url = 'https://space-facts.com/mars/'
-        
-
-# %%
-tables = pd.read_html(url)
-print(tables[0])
-
-tables[2].head()
-    
-    
-# %%
-type(tables)
-
-
-# %%
-df=tables[0]
-df.columns = ['Measure', 'Fact']
-df.head()
-
-
-# %%
-#def init_browser():
-    #executable_path = {"executable_path":"chromedriver.exe"}
-    #return Browser("chrome", **executable_path, headless=False)
-
-
-# %%
-df = df.iloc[1:]
-df.set_index('Measure', inplace=True)
-df.head()
-
-
-# %%
-html_table = df.to_html()
-html_table
-
-
-# %%
-html_table.replace('\n', '')
-
 
 # %%
 
